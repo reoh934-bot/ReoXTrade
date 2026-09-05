@@ -26,6 +26,7 @@
             background: #07070b;
             color: #fff;
             min-height: 100vh;
+            position: relative;
         }
 
         a {
@@ -33,8 +34,1171 @@
             text-decoration: none;
         }
 
+        /* TOAST УВЕДОМЛЕНИЯ */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 9999;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .toast {
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: slideInRight 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toast-success {
+            background: rgba(16, 185, 129, 0.2);
+            border-left: 4px solid #10b981;
+            color: #a7f3d0;
+        }
+
+        .toast-error {
+            background: rgba(239, 68, 68, 0.2);
+            border-left: 4px solid #ef4444;
+            color: #fca5a5;
+        }
+
+        .toast-warning {
+            background: rgba(251, 191, 36, 0.2);
+            border-left: 4px solid #fbbf24;
+            color: #fde68a;
+        }
+
+        .toast-info {
+            background: rgba(59, 130, 246, 0.2);
+            border-left: 4px solid #3b82f6;
+            color: #93c5fd;
+        }
+
+        .toast-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+
+        .toast-message {
+            opacity: 0.8;
+            font-size: 13px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+        }
+
+        .toast.hiding {
+            animation: slideOutRight 0.3s ease forwards;
+        }
+
         /* NAVBAR */
         .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            background: rgba(7, 7, 11, .8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid #191923;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .logo span,
+        .footer-logo span {
+            color: #8b5cf6;
+        }
+
+        .navbar nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar nav a {
+            color: #999;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        .navbar nav a:hover {
+            color: #fff;
+        }
+
+        .profile-btn {
+            border: 0;
+            background: #15151e;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .profile-btn:hover {
+            background: #2a2a3a;
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 530px;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 13px;
+            border: 1px solid #3b2465;
+            background: #160f27;
+            color: #b78aff;
+            border-radius: 30px;
+            font-size: 12px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 76px);
+            line-height: .98;
+            letter-spacing: -3px;
+        }
+
+        .hero h1 span {
+            color: #9b5cff;
+        }
+
+        .hero p {
+            color: #999;
+            font-size: 17px;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 25px 0;
+        }
+
+        .hero-btn,
+        .primary-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border: 0;
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+            color: white;
+            padding: 13px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, .2);
+            transition: 0.3s;
+        }
+
+        .hero-btn:hover,
+        .primary-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, .4);
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            right: -100px;
+            top: 0;
+            background: #7c3aed;
+            filter: blur(180px);
+            opacity: .15;
+        }
+
+        /* SHOP */
+        .shop-section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 70px 6%;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+
+        .small-title {
+            color: #9b5cff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2,
+        .info-section h2 {
+            font-size: 36px;
+            margin-top: 7px;
+        }
+
+        .cart {
+            background: #12121a;
+            border: 1px solid #20202b;
+            padding: 10px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cart:hover {
+            border-color: #7c3aed;
+        }
+
+        .cart-count {
+            background: #7c3aed;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* SEARCH */
+        .search-box {
+            height: 54px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #101017;
+            border: 1px solid #22222d;
+            padding: 0 17px;
+            border-radius: 14px;
+            margin-bottom: 18px;
+            transition: 0.3s;
+        }
+
+        .search-box:focus-within {
+            border-color: #7c3aed;
+        }
+
+        .search-box input {
+            flex: 1;
+            background: none;
+            border: 0;
+            outline: 0;
+            color: white;
+            font-size: 15px;
+        }
+
+        .search-box input::placeholder {
+            color: #666;
+        }
+
+        /* CATEGORIES */
+        .categories {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 15px;
+        }
+
+        .category {
+            white-space: nowrap;
+            border: 1px solid #24242f;
+            background: #101017;
+            color: #888;
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .category:hover {
+            border-color: #7c3aed;
+            color: #fff;
+        }
+
+        .category.active {
+            background: #7c3aed;
+            color: white;
+            border-color: #7c3aed;
+        }
+
+        /* PRODUCTS */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .product {
+            overflow: hidden;
+            background: #101017;
+            border: 1px solid #20202a;
+            border-radius: 18px;
+            transition: .25s;
+            position: relative;
+        }
+
+        .product:hover {
+            transform: translateY(-4px);
+            border-color: #54308b;
+        }
+
+        .product-image {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 65px;
+            background: radial-gradient(circle, #29203c, #111118);
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-category {
+            color: #9b5cff;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .product h3 {
+            margin: 7px 0;
+        }
+
+        .product p {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .product-bottom strong {
+            font-size: 19px;
+            color: #a78bfa;
+        }
+
+        .product-bottom button {
+            background: #fff;
+            color: #09090c;
+            border: 0;
+            padding: 9px 14px;
+            border-radius: 9px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .product-bottom button:hover {
+            background: #a78bfa;
+            transform: scale(1.05);
+        }
+
+        .product-out-of-stock {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ef4444;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* INFO */
+        .info-section {
+            max-width: 1200px;
+            margin: auto;
+            padding: 80px 6%;
+        }
+
+        .info-section p {
+            color: #777;
+            max-width: 550px;
+            line-height: 1.7;
+            margin-top: 15px;
+        }
+
+        /* COOKIE */
+        .cookie-box {
+            position: fixed;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            z-index: 500;
+            background: #12121a;
+            border: 1px solid #2a2a38;
+            border-radius: 17px;
+            padding: 20px;
+            box-shadow: 0 20px 70px #000;
+            transition: .3s;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cookie-box.hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            pointer-events: none;
+        }
+
+        .cookie-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .cookie-content h3 {
+            margin-bottom: 7px;
+        }
+
+        .cookie-content p {
+            color: #888;
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 650px;
+        }
+
+        .cookie-buttons {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .secondary-btn {
+            background: #20202a;
+            color: white;
+            border: 0;
+            padding: 12px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .secondary-btn:hover {
+            background: #2a2a3a;
+        }
+
+        /* MODAL */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, .85);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-window {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            background: #111118;
+            border: 1px solid #292936;
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-window h2 {
+            margin: 15px 0 8px;
+        }
+
+        .modal-window p {
+            color: #777;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .close {
+            position: absolute;
+            top: 12px;
+            right: 15px;
+            background: none;
+            border: 0;
+            color: #777;
+            font-size: 28px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close:hover {
+            color: #fff;
+            transform: rotate(90deg);
+        }
+
+        .modal-icon {
+            font-size: 45px;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 35px 6%;
+            border-top: 1px solid #191923;
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+        }
+
+        .footer-logo {
+            color: white;
+            font-weight: 800;
+        }
+
+        /* NO RESULTS */
+        .no-results {
+            display: none;
+            text-align: center;
+            color: #666;
+            padding: 60px;
+        }
+
+        /* GEO BLOCK */
+        .geo-block {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: #07070b;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .geo-block.show {
+            display: flex;
+        }
+
+        .geo-block-content {
+            max-width: 500px;
+        }
+
+        .geo-block-content .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .geo-block-content h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .geo-block-content p {
+            color: #999;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .geo-block-content .country-badge {
+            display: inline-block;
+            background: #1a1a2e;
+            border: 1px solid #2a2a3a;
+            padding: 8px 16px;
+            border-radius: 10px;
+            margin: 5px;
+            font-weight: 700;
+        }
+
+        .geo-block-content .allowed {
+            color: #10b981;
+        }
+
+        .geo-block-content .denied {
+            color: #ef4444;
+        }
+
+        /* MOBILE */
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .navbar nav {
+                display: none;
+            }
+
+            .hero {
+                min-height: 500px;
+                padding: 50px 25px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .shop-section {
+                padding: 55px 20px;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 160px;
+            }
+
+            .cookie-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .cookie-buttons {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .toast-container {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- GEO БЛОКИРОВКА -->
+    <div id="geo-block" class="geo-block">
+        <div class="geo-block-content">
+            <div class="icon">🚫</div>
+            <h1>Доступ ограничен</h1>
+            <p>К сожалению, магазин ReoX-Trade доступен только в следующих странах:</p>
+            <div>
+                <span class="country-badge allowed">🇷🇺 Россия</span>
+                <span class="country-badge allowed">🇧🇾 Белоруссия</span>
+            </div>
+            <p style="margin-top: 20px;">Ваша страна:</p>
+            <div id="user-country" class="country-badge denied">🌍 Неизвестно</div>
+            <p style="margin-top: 20px; font-size: 13px; color: #666;">
+                Если вы находитесь в России или Белоруссии, но видите это сообщение — попробуйте отключить VPN.
+            </p>
+        </div>
+    </div>
+
+    <!-- Cookie / условия -->
+    <div id="cookie-box" class="cookie-box">
+        <div class="cookie-content">
+            <div>
+                <h3>🍪 Файлы cookie</h3>
+                <p>
+                    Мы используем cookie и похожие технологии для работы сайта,
+                    сохранения настроек и улучшения интерфейса.
+                </p>
+            </div>
+            <div class="cookie-buttons">
+                <button id="cookie-accept" class="primary-btn">Принять</button>
+                <button id="cookie-settings" class="secondary-btn">Условия</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Навигация -->
+    <header class="navbar">
+        <a href="#" class="logo">ReoX<span>-Trade</span></a>
+        <nav>
+            <a href="#home">Главная</a>
+            <a href="#shop">Магазин</a>
+            <a href="#orders">Заказы</a>
+        </nav>
+        <button class="profile-btn" id="profile-btn">👤</button>
+    </header>
+
+    <!-- Главная -->
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="badge">⚡ Быстрая выдача</div>
+                <h1>Добро пожаловать<br>в <span>ReoX-Trade</span></h1>
+                <p>Игровые товары, удобный заказ и простой интерфейс.</p>
+                <a href="#shop" class="hero-btn">Открыть магазин →</a>
+            </div>
+            <div class="hero-glow"></div>
+        </section>
+
+        <!-- Магазин -->
+        <section id="shop" class="shop-section">
+            <div class="section-title">
+                <div>
+                    <span class="small-title">КАТАЛОГ</span>
+                    <h2>Магазин</h2>
+                </div>
+                <div class="cart" id="cart-btn">
+                    🛒 <span id="cart-count" class="cart-count">0</span>
+                </div>
+            </div>
+
+            <!-- Поиск -->
+            <div class="search-box">
+                <span>🔎</span>
+                <input id="search" type="search" placeholder="Поиск товара..." autocomplete="off">
+            </div>
+
+            <!-- Категории -->
+            <div class="categories">
+                <button class="category active" data-category="all">Все</button>
+                <button class="category" data-category="mm2">MM2</button>
+                <button class="category" data-category="other">Другое</button>
+            </div>
+
+            <!-- Товары -->
+            <div id="products" class="products">
+                <article class="product" data-name="Chroma Godly" data-category="mm2" data-price="199" data-stock="true">
+                    <div class="product-image">🔪</div>
+                    <div class="product-info">
+                        <span class="product-category">MM2</span>
+                        <h3>Chroma Godly</h3>
+                        <p>Игровой предмет</p>
+                        <div class="product-bottom">
+                            <strong>199 ₽</strong>
+                            <button class="buy-btn">Купить</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-name="Godly Item" data-category="mm2" data-price="149" data-stock="true">
+                    <div class="product-image">💎</div>
+                    <div class="product-info">
+                        <span class="product-category">MM2</span>
+                        <h3>Godly Item</h3>
+                        <p>Игровой предмет</p>
+                        <div class="product-bottom">
+                            <strong>149 ₽</strong>
+                            <button class="buy-btn">Купить</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-name="Mystery Item" data-category="other" data-price="99" data-stock="true">
+                    <div class="product-image">🎁</div>
+                    <div class="product-info">
+                        <span class="product-category">Другое</span>
+                        <h3>Mystery Item</h3>
+                        <p>Сюрприз-предмет</p>
+                        <div class="product-bottom">
+                            <strong>99 ₽</strong>
+                            <button class="buy-btn">Купить</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product" data-name="Rare Sword" data-category="mm2" data-price="299" data-stock="false">
+                    <div class="product-image">⚔️</div>
+                    <div class="product-info">
+                        <span class="product-category">MM2</span>
+                        <h3>Rare Sword</h3>
+                        <p>Редкий меч</p>
+                        <div class="product-bottom">
+                            <strong>299 ₽</strong>
+                            <button class="buy-btn" disabled style="opacity:0.5;cursor:not-allowed;">Нет в наличии</button>
+                        </div>
+                    </div>
+                    <div class="product-out-of-stock">Нет в наличии</div>
+                </article>
+            </div>
+
+            <div id="no-results" class="no-results">Товаров не найдено 😕</div>
+        </section>
+
+        <!-- Заказы -->
+        <section id="orders" class="info-section">
+            <span class="small-title">REOX-TRADE</span>
+            <h2>Мои заказы</h2>
+            <p>После подключения аккаунта здесь будет отображаться история заказов и их статус.</p>
+        </section>
+    </main>
+
+    <!-- Нижняя панель -->
+    <footer>
+        <div class="footer-logo">ReoX<span>-Trade</span></div>
+        <p>© 2026 ReoX-Trade</p>
+    </footer>
+
+    <!-- Профиль -->
+    <div id="profile-modal" class="modal" role="dialog" aria-modal="true">
+        <div class="modal-window">
+            <button class="close" id="modal-close" aria-label="Закрыть">×</button>
+            <div class="modal-icon">👤</div>
+            <h2>Профиль</h2>
+            <p>Авторизация будет добавлена на следующем этапе.</p>
+            <button class="primary-btn">Войти / Регистрация</button>
+        </div>
+    </div>
+
+    <!-- ============================
+         ВЕСЬ JAVASCRIPT
+         ============================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================
+            // TOAST СИСТЕМА (красивые уведомления)
+            // ============================
+
+            function showToast(message, type = 'success', title = '') {
+                const container = document.querySelector('.toast-container') || (function() {
+                    const c = document.createElement('div');
+                    c.className = 'toast-container';
+                    document.body.appendChild(c);
+                    return c;
+                })();
+
+                const icons = {
+                    success: '✅',
+                    error: '❌',
+                    warning: '⚠️',
+                    info: 'ℹ️'
+                };
+
+                const titles = {
+                    success: 'Успешно',
+                    error: 'Ошибка',
+                    warning: 'Внимание',
+                    info: 'Информация'
+                };
+
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                toast.innerHTML = `
+                    <span class="toast-icon">${icons[type] || 'ℹ️'}</span>
+                    <div class="toast-content">
+                        <div class="toast-title">${title || titles[type] || 'Уведомление'}</div>
+                        <div class="toast-message">${message}</div>
+                    </div>
+                `;
+
+                container.appendChild(toast);
+
+                setTimeout(() => {
+                    toast.classList.add('hiding');
+                    setTimeout(() => toast.remove(), 400);
+                }, 3500);
+            }
+
+            // ============================
+            // ГЕО-БЛОКИРОВКА
+            // ============================
+
+            const ALLOWED_COUNTRIES = ['RU', 'BY'];
+            const COUNTRY_NAMES = {
+                'RU': '🇷🇺 Россия',
+                'BY': '🇧🇾 Белоруссия'
+            };
+
+            function checkGeo() {
+                const geoBlock = document.getElementById('geo-block');
+                const userCountryEl = document.getElementById('user-country');
+
+                // Проверяем, не сохранена ли уже гео-информация
+                const savedGeo = localStorage.getItem('reox_geo_allowed');
+
+                if (savedGeo === 'true') {
+                    geoBlock.classList.remove('show');
+                    return;
+                }
+
+                // Если мы уже показали блок и сохранили, что страна разрешена
+                if (savedGeo === 'false') {
+                    geoBlock.classList.add('show');
+                    return;
+                }
+
+                // Пытаемся получить гео через API
+                fetch('https://ipapi.co/json/')
+                    .then(response => response.json())
+                    .then(data => {
+                        const countryCode = data.country_code || '';
+                        const countryName = data.country_name || 'Неизвестно';
+                        const isAllowed = ALLOWED_COUNTRIES.includes(countryCode);
+
+                        if (userCountryEl) {
+                            userCountryEl.textContent = COUNTRY_NAMES[countryCode] || `🌍 ${countryName}`;
+                        }
+
+                        if (isAllowed) {
+                            localStorage.setItem('reox_geo_allowed', 'true');
+                            geoBlock.classList.remove('show');
+                            showToast('Добро пожаловать в ReoX-Trade!', 'success', '✅ Доступ разрешён');
+                        } else {
+                            localStorage.setItem('reox_geo_allowed', 'false');
+                            geoBlock.classList.add('show');
+                            // Показываем уведомление об ошибке
+                            setTimeout(() => {
+                                showToast(
+                                    `Ваша страна (${countryName}) не поддерживается. Доступ только для России и Белоруссии.`,
+                                    'error',
+                                    '🚫 Доступ запрещён'
+                                );
+                            }, 500);
+                        }
+                    })
+                    .catch(() => {
+                        // Если не удалось определить страну, пропускаем (для разработки)
+                        console.warn('Не удалось определить страну, пропускаем гео-блокировку');
+                        localStorage.setItem('reox_geo_allowed', 'true');
+                        geoBlock.classList.remove('show');
+                        showToast('Не удалось определить страну, доступ открыт', 'warning', '⚠️ Внимание');
+                    });
+            }
+
+            // ============================
+            // COOKIE
+            // ============================
+
+            const cookieBox = document.getElementById('cookie-box');
+            const cookieAccept = document.getElementById('cookie-accept');
+            const cookieSettings = document.getElementById('cookie-settings');
+
+            if (cookieBox && localStorage.getItem('reox_cookie') === 'true') {
+                cookieBox.classList.add('hidden');
+            }
+
+            if (cookieAccept) {
+                cookieAccept.addEventListener('click', function() {
+                    localStorage.setItem('reox_cookie', 'true');
+                    cookieBox.classList.add('hidden');
+                    showToast('Спасибо, что приняли cookie!', 'success', '🍪 Cookie приняты');
+                });
+            }
+
+            if (cookieSettings) {
+                cookieSettings.addEventListener('click', function() {
+                    showToast(
+                        'Настройки Cookie будут доступны в ближайшее время. Мы используем только необходимые cookie для работы сайта.',
+                        'info',
+                        '🍪 Настройки Cookie'
+                    );
+                });
+            }
+
+            // ============================
+            // ПОИСК
+            // ============================
+
+            const search = document.getElementById('search');
+            const products = document.querySelectorAll('.product');
+            const noResults = document.getElementById('no-results');
+
+            function filterProducts(query, category) {
+                let found = 0;
+
+                products.forEach(function(product) {
+                    const name = (product.dataset.name || '').toLowerCase();
+                    const prodCategory = product.dataset.category || '';
+                    const matchName = name.includes(query);
+                    const matchCategory = (category === 'all' || prodCategory === category);
+
+                    if (matchName && matchCategory) {
+                        product.style.display = '';
+                        found++;
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+
+                if (noResults) {
+                    noResults.style.display = found === 0 ? 'block' : 'none';
+                }
+            }
+
+            let currentQuery = '';
+            let currentCategory = 'all';
+
+            if (search) {
+                let searchTimeout;
+                search.addEventListener('input', function() {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        currentQuery = search.value.toLowerCase().trim();
+                        filterProducts(currentQuery, currentCategory);
+                    }, 300);
+                });
+            }
+
+            // ============================
+            // КАТЕГОРИИ
+            // ============================
+
+            const categories = document.querySelectorAll('.category');
+
+            categories.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    categories.forEach(function(btn) {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+
+                    currentCategory = button.dataset.category;
+                    filterProducts(currentQuery, currentCategory);
+                });
+            });
+
+            // ============================
+            // КОРЗИНА (с сохранением)
+            // ============================
+
+            let cartItems = [];
+            const cartCount = document.getElementById('cart-count');
+
+            // Загрузка корзины
+            function loadCart() {
+                try {
+                    const stored = localStorage.getItem('reox_cart');
+                    if (stored) {
+                        cartItems = JSON.parse(stored);
+                        if (!Array.isArray(cartItems)) cartItems = [];
+                        updateCartUI();
+                    }
+                } catch (e) {
+                    cartItems = [];
+                }
+            }
+
+            // Сохранение корзины
+            function saveCart() {
+                localStorage.setItem('reox_cart', JSON.stringify(cartItems));
+                updateCartUI();
+            }
+
+            // Обновление UI корзины
+            function updateCartUI() {
+                if (cartCount) {
+                    cartCount.textContent = cartItems.length;
+                }
+            }
+
+            // Добавление в корзину
+            function addToCart(productName, price) {
+                // Проверяем, есть ли уже такой товар
+                const existing = cartItems.find(item => item.name === productName);
+                if (existing) {
+                    existing.quantity = (existing.quantity || 1) + 1;
+                    showToast(`${productName} уже в корзине! Добавлена ещё одна копия.`, 'info', '🛒 Обновлено');
+                } else {
+                    cartItems.push({
+                        name: productName,
+                        price: price,
+                        quantity: 1
+                    });
+                    showToast(`${productName} добавлен в корзину!`, 'success', '🛒 Товар добавлен');
+                }
+                saveCart();
+            }
+
+            // Просмотр корзины (клик по иконке)
+            document.getElementById('cart-btn')?.addEventListener('click', function() {
+                if (cartItems.length === 0) {
+                    showToast('Корзина пуста. Добавьте товары!', 'warning', '🛒 Корзина');
+                    return;
+                }
+
+                let message = 'Ваша корзина:\n\n';
+                let total = 0;
+                cartItems.forEach((item, index) => {
+                    const qty = item.quantity || 1;
+                    const subtotal = item.price * qty;
+                    message += `${index + 1}. ${item.name} × ${qty} = ${subtotal} ₽\n`;
+                    total += subtotal;
+                });
+                message += `\nИтого: ${total} ₽`;
+                message += `\n\nТоваров: ${cartItems.length}`;
+
+                showToast(`В корзине ${cartItems.length} товаров на сумму ${total} ₽`, 'info',        .navbar {
             position: sticky;
             top: 0;
             z-index: 100;
